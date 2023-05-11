@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Website</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Set black background color, white text and some padding */
+    footer {
+     position: fixed;
+            
+            bottom: 0;
+            width: 100%;
+            color: white;
+             padding: 15px;
+            /* Height of the footer*/
+            height: 40px;
+           background-color: #555;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+/*     to make the box transparent  */
+    .trans{
+              width: 1200px;
+              background-color: #ffffff99;
+              box-shadow: 0 0 9px 0 rgba(0,0,0,0.3);
+              margin: 100px auto;
+              }
+    
+/* link */
+    a {
+  
+  color: white;
+  text-align: center;}
+    
+/* background image  */
+     body {
+  
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+    
+    
+}
+
+  </style>
+</head>
+  <body background="https://cdn.glitch.global/8599b2d2-58ab-4d42-98f5-97fa4c6bad04/placement.jpg?v=1682627152984">
+  
+
+<div class="container">
+<div class="panel-group">
+    <div class="panel panel-info trans">
+      <div class="panel-heading">
+      <div class="panel-title" align="center"><strong> STUDENT PLACEMENT PREDICTION </strong></div>
+      </div>
+      
+        <div class="panel-body">
+<hr>
+<!-- <center><img src="https://cdn.glitch.global/8599b2d2-58ab-4d42-98f5-97fa4c6bad04/iris.png?v=1680459047489" alt="Types of IRIS" width="1000" height="500"></center> -->
+          
+
+  
+         
+<form action="/stud_plac" method="POST">
+  <table class="table table-striped trans" align="center">
+    
+    <div class="row">
+    <tr>
+       <div class="col-sm-6">
+         <td><label for="age" class="form-label">Enter Age of Student (range: 19-30): </label></td></div>
+         <div class="col-sm-6">
+          <td><input type="text" name="age" placeholder="Enter Age of Student" required></td></div>
+
+    </tr>
+
+      <tr>
+        <div class="col-sm-6">
+          <td><label for="gender" class="form-label">Select Gender of Student: </label></td></div>
+        <div class="col-sm-6">
+          <td><select class="form-select" id="gender" name="gender" required>
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+ 
+              </select></td></div>
+    </tr>
+
+      <tr>
+        <div class="col-sm-6">
+          <td><label for="hostel" class="form-label">Student Lives in Hostel: </label></td></div>
+            <div class="col-sm-6">
+          <td><select class="form-select" id="hostel" name="hostel" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+               </select></td></div>
+      </tr>
+                
+    <tr>
+        <div class="col-sm-6">
+          <td><label for="stream" class="form-label">Select Stream of Student: </label></td> </div>
+         <div class="col-sm-6">
+          <td><select class="form-select" id="stream" name="stream" required>
+                <option value="1">Electronics And Communication</option>
+                <option value="2">Computer Science</option>
+                <option value="3">Information Technology</option>
+                <option value="4">Mechanical</option>
+                <option value="5">Electrical</option>
+                <option value="6">Civil</option>
+              </select></td></div>
+      </tr>
+    <tr>
+        <div class="col-sm-6">
+          <td><label for="internship" class="form-label">Number of Internships done by Student : </label></td></div>
+            <div class="col-sm-6">
+          <td><select class="form-select" id="internship" name="internship" required>
+                <option value="0">Zero</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+ 
+              </select></td></div>
+      </tr>
+      
+     <tr>
+        <div class="col-sm-6">
+          <td><label for="backlog" class="form-label">Any Backlog of Student: </label></td></div>
+            <div class="col-sm-6">
+          <td><select class="form-select" id="backlog" name="backlog" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+               </select></td></div>
+      </tr>
+      
+      <tr>
+        <div class="col-sm-6">
+          <td><label for="cgpa" class="form-label">Enter Student's CGPA: </label></td></div>
+       <div class="col-sm-6">
+          <td><input type="text" name="cgpa" placeholder="Enter Student's CGPA" required></td></div>
+      </tr>
+      
+ 
+      
+    
+    <tr>
+    <td colspan="2" align="center">
+      <input type="submit" value="Predict Student Placement">
+      <input type="reset" value="Clear">
+    </td>
+    </tr>
+    </div>
+  </table>
+  
+</form>
+</div>
+  
+          </div>
+     </div>
+
+   <div class="panel panel-success trans">
+     <div class="panel-heading"> Placement of Student : </div>
+     <div class="panel-body" align="center">{{data}} </div>
+     <center>
+     {% if data==0 %}
+        <h2>
+         !!Student is not valid for Placement!!
+       </h2>
+        
+     {% elif data==1 %}
+        <h2>
+          !!Student is valid for Placement!!
+       </h2>
+       
+     
+     {% endif %}
+     </center>
+   </div>
+  </div>
+  
+
+  
+  <hr>
+<footer class="container-fluid text-center">
+  <p>@Vikas</p>
+</footer>
+
+  </body>
+
+</html>
